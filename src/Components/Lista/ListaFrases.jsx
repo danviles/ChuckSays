@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useEffect, useContext, useState } from 'react'
+import ChuckContext from '../../Context/ChuckApi/ChuckContext'
+import Frase from './Frase';
 
 const ListaFrases = () => {
+    const chuckContext = useContext(ChuckContext);
+    const { listafrases, cargarFrases } = chuckContext;
+
+    useEffect(() => {
+        cargarFrases()
+    }, []);
+
     return (
-        <></>
-        // <table>
-        //     <tr>
-        //         <td>Alfreds Futterkiste</td>
-        //         <button>Delete</button>
-        //     </tr>
-        // </table>
+        <div>
+            {listafrases.map((frase, i) => 
+                <Frase key={i} frase={frase}/>
+            )}
+        </div>
     )
 }
 

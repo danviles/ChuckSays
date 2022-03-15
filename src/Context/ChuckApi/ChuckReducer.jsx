@@ -2,7 +2,8 @@ import {
     OBTENER_FRASE,
     RELLENAR_CATEGORIAS,
     AGREGAR_FRASE,
-    CARGAR_FRASES
+    CARGAR_FRASES,
+    BORRAR_FRASE
 } from '../../types';
 
 export default (state, action) => {
@@ -27,11 +28,17 @@ export default (state, action) => {
                 fraseactual: null
             }
         
-        // case CARGAR_FRASES:
-        //     return {
-        //         ...state,
-        //         listafrases
-        //     }
+        case CARGAR_FRASES:
+            return {
+                ...state,
+                listafrases: action.payload
+            }
+        
+        case BORRAR_FRASE:
+            return {
+                ...state,
+                listafrases: state.listafrases.filter((frase) => frase !== action.payload)
+            }
 
         default:
             return state;

@@ -14,10 +14,7 @@ const Formulario = () => {
 
     const generarFrase = (e) => {
         e.preventDefault();
-
-        // Consultar frase a la api
         obtenerFrase(categoria);
-
     }
 
     return (

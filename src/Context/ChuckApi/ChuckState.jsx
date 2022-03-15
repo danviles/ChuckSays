@@ -1,13 +1,14 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import ChuckContext from './ChuckContext';
 import ChuckReducer from './ChuckReducer';
 import axios from 'axios'
 
-import { 
+import {
     RELLENAR_CATEGORIAS,
     OBTENER_FRASE,
     AGREGAR_FRASE,
-    CARGAR_FRASES
+    CARGAR_FRASES,
+    BORRAR_FRASE
 } from '../../types';
 
 const ChuckState = props => {
@@ -17,12 +18,16 @@ const ChuckState = props => {
         fraseactual: null
     }
 
-    const [ state, dispatch ] = useReducer(ChuckReducer, initialState);
+    const [state, dispatch] = useReducer(ChuckReducer, initialState);
+
+    useEffect(() => {
+        localStorage.setItem('frases', JSON.stringify(state.listafrases))
+    }, [state.listafrases])
 
     const obtenerCategorias = (async () => {
         try {
-            const resultado = await axios.get('https://api.chucknorris.io/jokes/categories'); 
-            console.log(resultado); 
+            const resultado = await axios.get('https://api.chucknorris.io/jokes/categories');
+            console.log(resultado);
             dispatch({
                 type: RELLENAR_CATEGORIAS,
                 payload: resultado.data
@@ -34,8 +39,8 @@ const ChuckState = props => {
 
     const obtenerFrase = (async (categoria) => {
         try {
-            const resultado = await axios.get(`https://api.chucknorris.io/jokes/random?category=${categoria}`); 
-            console.log(resultado); 
+            const resultado = await axios.get(`https://api.chucknorris.io/jokes/random?category=${categoria}`);
+            console.log(resultado);
             dispatch({
                 type: OBTENER_FRASE,
                 payload: resultado.data.value
@@ -52,14 +57,22 @@ const ChuckState = props => {
         })
     }
 
-    // const cargarFrases = () => {
-    //     dispatch({
-    //         type: CARGAR_FRASES,
-    //         payload: frase
-    //     })
-    // }
+    const cargarFrases = () => {
+        const frases = JSON.parse(localStorage.getItem('frases'))
+        dispatch({
+            type: CARGAR_FRASES,
+            payload: frases
+        })
+    }
 
-    return(
+    const borrarFrase = (frase) => {
+        dispatch({
+            type: BORRAR_FRASE,
+            payload: frase
+        })
+    }
+
+    return (
         <ChuckContext.Provider
             value={{
                 categorias: state.categorias,
@@ -67,10 +80,11 @@ const ChuckState = props => {
                 listafrases: state.listafrases,
                 obtenerCategorias,
                 obtenerFrase,
-                agregarFrase
+                agregarFrase,
+                cargarFrases,
+                borrarFrase
             }}
         >{props.children}
-
         </ChuckContext.Provider>
     )
 }

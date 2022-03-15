@@ -9,7 +9,9 @@ const ChuckContenedor = () => {
 
   const agregar = (e) => {
     e.preventDefault();
-    agregarFrase(fraseactual);
+    if (fraseactual) {
+      agregarFrase(fraseactual);
+    }
   }
 
   return (
