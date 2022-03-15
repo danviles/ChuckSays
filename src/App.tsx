@@ -1,7 +1,9 @@
 import { useState } from 'react'
-import ChuckContainer from './Components/Chuck/ChuckContainer'
+import ChuckContenedor from './Components/Chuck/ChuckContenedor'
 import Formulario from './Components/Formulario/Formulario'
+import ListaFrases from './Components/Lista/ListaFrases'
 import ChuckState from './Context/ChuckApi/ChuckState'
+
 
 //import TiendaState from './context/tienda/tiendaState';
 
@@ -12,7 +14,8 @@ function App() {
 
     <ChuckState>
       <Formulario/>
-      <ChuckContainer/>
+      <ChuckContenedor/>
+      <ListaFrases/>
     </ChuckState>
    
   
