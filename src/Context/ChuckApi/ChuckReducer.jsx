@@ -37,7 +37,7 @@ export default (state, action) => {
         case BORRAR_FRASE:
             return {
                 ...state,
-                listafrases: state.listafrases.filter((frase) => frase !== action.payload)
+                listafrases: state.listafrases.filter((data) => data.value !== action.payload)
             }
 
         default:

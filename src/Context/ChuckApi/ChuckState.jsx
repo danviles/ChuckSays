@@ -29,7 +29,6 @@ const ChuckState = props => {
     const obtenerCategorias = (async () => {
         try {
             const resultado = await axios.get('https://api.chucknorris.io/jokes/categories');
-            console.log(resultado);
             dispatch({
                 type: RELLENAR_CATEGORIAS,
                 payload: resultado.data
@@ -42,20 +41,19 @@ const ChuckState = props => {
     const obtenerFrase = (async (categoria) => {
         try {
             const resultado = await axios.get(`https://api.chucknorris.io/jokes/random?category=${categoria}`);
-            console.log(resultado);
             dispatch({
                 type: OBTENER_FRASE,
-                payload: resultado.data.value
+                payload: resultado.data
             })
         } catch (error) {
             console.log(error);
         }
     })
 
-    const agregarFrase = (frase) => {
+    const agregarFrase = (data) => {
         dispatch({
             type: AGREGAR_FRASE,
-            payload: frase
+            payload: data
         })
     }
 

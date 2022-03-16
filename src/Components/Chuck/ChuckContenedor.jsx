@@ -10,6 +10,7 @@ const ChuckContenedor = () => {
   const chuckContext = useContext(ChuckContext);
   const { fraseactual, agregarFrase } = chuckContext
 
+ 
   const agregar = (e) => {
     e.preventDefault();
     if (fraseactual) {
@@ -31,7 +32,7 @@ const ChuckContenedor = () => {
       <div className='chuck-container '>
         <div className="container ">
           <blockquote cite=''>
-            {fraseactual}
+            {fraseactual ? fraseactual.value : null}
           </blockquote>
         {fraseactual ? <button className='btn btn-success aling-right-button' onClick={agregar}>Add</button> : null}
         </div>

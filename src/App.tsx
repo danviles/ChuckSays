@@ -2,7 +2,6 @@ import ChuckContenedor from './Components/Chuck/ChuckContenedor'
 import ListaFrases from './Components/Lista/ListaFrases'
 import ChuckState from './Context/ChuckApi/ChuckState'
 
-
 function App() {
 
   return (

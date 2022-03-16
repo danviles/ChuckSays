@@ -12,10 +12,11 @@
     "@emotion/style": "^0.8.0",
     "@emotion/styled": "^11.8.1",
     "axios": "^0.26.1",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
+    "react-csv": "^2.2.2",
     "react-dom": "^17.0.2",
-    "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.4.4"
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "@types/react": "^17.0.33",
