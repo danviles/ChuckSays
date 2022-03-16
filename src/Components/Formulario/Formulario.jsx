@@ -6,7 +6,7 @@ const Formulario = () => {
     const chuckContext = useContext(ChuckContext);
     const { categorias, obtenerCategorias, obtenerFrase } = chuckContext
 
-    const [ categoria, setCategoria ] = useState('');
+    const [categoria, setCategoria] = useState('');
 
     useEffect(() => {
         obtenerCategorias();
@@ -14,19 +14,32 @@ const Formulario = () => {
 
     const generarFrase = (e) => {
         e.preventDefault();
-        obtenerFrase(categoria);
+        if (categoria) {
+            obtenerFrase(categoria);
+        } else {
+            swal({
+                title: "Error!",
+                text: "Select category first",
+                icon: "error",
+                timer: 2000
+            });
+        }
     }
 
     return (
-        <div>
+        <div className='container mt-1'>
             <form onSubmit={generarFrase}>
-                <select name="categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-                    <option value="" disabled>Select Category</option>
-                    {categorias.map(opcion => (
-                        <option key={opcion} value={opcion}>{opcion}</option>
-                    ))}
-                </select>
-                <button type='submit'>Generate</button>
+                <div className="input-group mb-3">
+                    <select className='form-select' name="categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                        <option value="" disabled>Select Category</option>
+                        {categorias.map(opcion => (
+                            <option key={opcion} value={opcion}>{opcion}</option>
+                        ))}
+                    </select>
+                    <div className="input-group-append">
+                        <button className='btn btn-primary' type='submit'>Generate</button>
+                    </div>
+                </div>
             </form>
         </div>
     )

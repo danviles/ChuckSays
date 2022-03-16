@@ -12,6 +12,7 @@ import {
 } from '../../types';
 
 const ChuckState = props => {
+
     const initialState = {
         categorias: [],
         listafrases: [],
@@ -23,6 +24,7 @@ const ChuckState = props => {
     useEffect(() => {
         localStorage.setItem('frases', JSON.stringify(state.listafrases))
     }, [state.listafrases])
+
 
     const obtenerCategorias = (async () => {
         try {
@@ -58,7 +60,8 @@ const ChuckState = props => {
     }
 
     const cargarFrases = () => {
-        const frases = JSON.parse(localStorage.getItem('frases'))
+        let frases = JSON.parse(localStorage.getItem('frases'))
+        if (!frases) frases = []; 
         dispatch({
             type: CARGAR_FRASES,
             payload: frases

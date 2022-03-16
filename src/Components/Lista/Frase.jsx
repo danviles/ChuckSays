@@ -10,13 +10,21 @@ const Frase = ({ frase }) => {
     const borrar = (e) => {
         e.preventDefault();
         borrarFrase(frase);
+        swal({
+            title: "Good job!",
+            text: "The phrase has been REMOVED successfully",
+            icon: "success",
+            timer: 2000
+          });
     }
 
     return (
-        <div>
+        <div className='container mt-2 listado-frases'>
             <p>{frase}</p>
-            <button onClick={borrar}>Delete</button>
+            <button className='btn btn-danger' onClick={borrar}>Delete</button>
+            <hr />
         </div>
+
     )
 }
 
