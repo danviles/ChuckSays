@@ -12,6 +12,8 @@ const ListaFrases = () => {
         cargarFrases()
     }, []);
 
+    console.l
+
     return (
         <>
             <div className='container mb-5 mt-2 overflow-auto container-frases'>
@@ -26,7 +28,7 @@ const ListaFrases = () => {
                 </div>
             </div>
             <div className="container">
-                <Export data={listafrases} />
+               {listafrases.length > 0 && <Export data={listafrases}/>}
             </div>
         </>
     )

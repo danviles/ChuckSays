@@ -13,7 +13,7 @@ Entre las tecnologías que se usan están :
 
 ## Instalación y despliegue
 
-El despliegue de la aplicación esta hecha en netlify y se puede probar mediante el siguiente [Link](https://confident-leavitt-801402.netlify.app)
+El despliegue de la aplicación esta hecha en netlify y se puede probar mediante el siguiente [Link](https://dreamy-gates-7c0237.netlify.app)
 
 O también puedes clonar este repositorio y acceder al directorio raíz :
 
